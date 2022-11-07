@@ -1,4 +1,4 @@
-export function createReferralSvg(name) {
+export function createReferralSvg(name: string) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1500 900">
   <g xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" data-bx-workspace="master" transform="translate(422.64 195.993) scale(1)" data-outlines="below">
     <defs>

@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { return_url } from "../../../../utils/utils";
 import { createReferralSvg } from "../../../../utils/createSvgReferral";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = null } = req.query;
   const host = return_url(req);
 
