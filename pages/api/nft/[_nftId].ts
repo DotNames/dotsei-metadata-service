@@ -3,8 +3,8 @@ import { parseDomainNameWithShm, return_url } from "../../../utils/utils";
 import { createReferralSvg } from "../../../utils/createSvgReferral";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createSvgDomainNft } from "../../../utils/createSvgDomainNft";
-import sharp from "sharp";
-
+// import sharp from "sharp";
+const sharp= require("sharp");
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = "" } = req.query;
   const host = return_url(req);
