@@ -31,7 +31,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       externalUrl: `https://dotshm.me/name/${_domainName}`,
       nftUrl: `${host}/api/nft/${_domainName}`,
       referralUrl: `https://dotshm.me?referral=${parsedDomainNameNoExt}`,
-      refrralPreviewUrl: `${host}/api/nft/referral/${parsedDomainNameNoExt}`,
+      refrralPreviewUrl: `${host}/api/nft/referral/${_domainName}`,
       attributes: [
         {
           trait_type: "domain",

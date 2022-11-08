@@ -1,5 +1,5 @@
 export function createReferralSvg(name: string) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1500 900">
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="335" viewBox="0 0 1500 900">
   <g xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" data-bx-workspace="master" transform="translate(422.64 195.993) scale(1)" data-outlines="below">
     <defs>
       <filter id="b" x="-513" y="315" width="2625" height="1440" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">

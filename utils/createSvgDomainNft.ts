@@ -1,5 +1,5 @@
 export function createSvgDomainNft(name: string, accent?: string) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="500" height="500" viewBox="0 0 1080 1080" xml:space="preserve">
 <desc>Created with Fabric.js 4.2.0</desc>
 <defs>
 </defs>
