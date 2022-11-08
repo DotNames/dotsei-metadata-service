@@ -6,11 +6,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = null } = req.query;
   const host = return_url(req);
 
-  console.log({
-    host,
-    query: req.query,
-  });
-
   const refSvg = createReferralSvg(_nftId);
   res.statusCode = 200;
   res.setHeader("Content-Type", "image/svg+xml");

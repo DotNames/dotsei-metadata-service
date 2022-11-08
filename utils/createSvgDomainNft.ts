@@ -1,4 +1,4 @@
-export function createSvgDomainNft(name: string) {
+export function createSvgDomainNft(name: string, accent?: string) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
 <desc>Created with Fabric.js 4.2.0</desc>
 <defs>
@@ -25,8 +25,10 @@ export function createSvgDomainNft(name: string) {
 </filter>
 		<text xml:space="preserve" font-family="Raleway" font-size="77" font-style="normal" font-weight="700" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1; white-space: pre;"><tspan x="-215.04" y="24.19"
         
-        style="fill:#333;font-family:Arial,sans-serif;font-size:59.5px;font-weight:700;white-space:pre"
-        >${name}</tspan></text>
+        style="fill:${
+          accent || "black"
+        };font-family:Arial,sans-serif;font-size:59.5px;font-weight:700;white-space:pre"
+        > ${accent == "red" ? "!" : ""}${name}</tspan></text>
 </g>
 </svg>
 `;

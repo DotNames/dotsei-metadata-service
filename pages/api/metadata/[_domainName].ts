@@ -23,17 +23,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       registeryContract,
       parsedDomainNameNoExt
     );
-
-    console.log("====================================");
-    console.log({ domainData });
-    console.log("====================================");
     res.send({
       ...domainData,
       name: parsedDomainNameNoExt,
       description: "SOME DESCRIPTION",
       domainName: _domainName,
       externalUrl: `https://dotshm.me/name/${_domainName}`,
-
+      nftUrl: `${host}/api/nft/${_domainName}`,
       referralUrl: `https://dotshm.me?referral=${parsedDomainNameNoExt}`,
       refrralPreviewUrl: `${host}/api/nft/referral/${parsedDomainNameNoExt}`,
       attributes: [
@@ -56,23 +52,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ],
     });
   } catch (error) {
-    console.log("====================================");
-    console.log({ error });
-    console.log("====================================");
     res.send({ error, _domainName });
   }
 
-  console.log({
-    host,
-    query: req.query,
-  });
-
-  // const refSvg = createReferralSvg(_nftId);
-  // res.statusCode = 200;
-  // res.setHeader("Content-Type", "image/svg+xml");
-  // res.setHeader(
-  //   "Cache-Control",
-  //   "public, immutable, no-transform, s-maxage=31536000, max-age=31536000"
-  // );
-  // return res.end(refSvg);
 };
