@@ -30,11 +30,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const image = await sharp(svgBuffer).png().toBuffer();
 
       res.statusCode = 200;
-      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Content-Type", "image/jpeg");
       res.setHeader(
         "Cache-Control",
         "public, immutable, no-transform, s-maxage=31536000, max-age=31536000"
       );
+        res.setHeader(
+    "accept",
+    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+  );
       // res.pipe(image);
       return res.end(image);
     }
