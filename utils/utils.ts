@@ -10,7 +10,10 @@ export function return_url(req: NextApiRequest) {
 export function parseDomainNameWithShm(domainName: string) {
   const domainNameSplit = domainName.split(".");
   const splitLength = domainNameSplit.length;
-  if (domainNameSplit.length > 2) {
+  if (
+    domainNameSplit.length >= 2 &&
+    domainNameSplit[splitLength - 1] == "shm"
+  ) {
     return domainNameSplit[0];
   }
   return null;
