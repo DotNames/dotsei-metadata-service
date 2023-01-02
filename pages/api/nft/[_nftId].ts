@@ -4,7 +4,7 @@ import { createReferralSvg } from "../../../utils/createSvgReferral";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createSvgDomainNft } from "../../../utils/createSvgDomainNft";
 // import sharp from "sharp";
-const sharp= require("sharp");
+const sharp = require("sharp");
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = "" } = req.query;
   const host = return_url(req);
@@ -25,7 +25,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (validationAccent) {
       const { accent } = validationAccent;
-      const refSvg = createSvgDomainNft(parsedDomainNameNoExt + ".shm", accent);
+
+      const capitalizedName =
+        parsedDomainNameNoExt.toUpperCase() + "SOMETHINGHEHE";
+      const truncateLongString =
+        capitalizedName.length <= 9
+          ? capitalizedName
+          : capitalizedName.substring(0, 11) + "...";
+      const refSvg = createSvgDomainNft(truncateLongString, accent);
       let svgBuffer = Buffer.from(refSvg);
       const image = await sharp(svgBuffer).png().toBuffer();
 
@@ -35,10 +42,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         "Cache-Control",
         "public, immutable, no-transform, s-maxage=31536000, max-age=31536000"
       );
-        res.setHeader(
-    "accept",
-    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
-  );
+      res.setHeader(
+        "accept",
+        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+      );
       // res.pipe(image);
       return res.end(image);
     }
