@@ -28,7 +28,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       name: parsedDomainNameNoExt,
       description: `DotShm domains is your go-to web3 identity on the Shardeum blockchain. Replace your complex blockchain addresses using DotShm and get access to thousands of web3 applications, trade your domains on secondary market & much more.
 
-Note: All the domains on DotShm are ~$6, no strings attached! 
 
 Visit www.dotshm.me now to claim a domain for yourself.`,
       domainName: _domainName,
