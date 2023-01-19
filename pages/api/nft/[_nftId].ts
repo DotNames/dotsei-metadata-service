@@ -26,8 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (validationAccent) {
       const { accent } = validationAccent;
 
-      const capitalizedName =
-        parsedDomainNameNoExt.toUpperCase() + "SOMETHINGHEHE";
+      const capitalizedName = parsedDomainNameNoExt.toUpperCase();
       const truncateLongString =
         capitalizedName.length <= 9
           ? capitalizedName

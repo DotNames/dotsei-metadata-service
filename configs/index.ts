@@ -3,7 +3,7 @@ export const DEFAULT_REFERRER_ADDRESS =
   "0x0000000000000000000000000000000000000000";
 
 export const EXPLORER_URL = "https://polygonscan.com";
-export const DEFAULT_CHAIN_ID =  ChainId.MATIC;
+export const DEFAULT_CHAIN_ID =  ChainId.LIBERTY20;
 export const REGISTRAR_SUBGRAPH_URL =
   "https://api.thegraph.com/subgraphs/name/dotshm/referrals-tracker";
 export const DEFAULT_DOMAIN_EXTENSION = ".shm";
