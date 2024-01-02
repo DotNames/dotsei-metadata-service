@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dotnames/dotseijs": "^0.0.1",
     "@ensdomains/eth-ens-namehash": "^2.0.15",
     "@ethersproject/contracts": "^5.7.0",
+    "@sei-js/core": "^3.1.2",
     "@vercel/og": "^0.0.20",
     "ethers": "^5.7.2",
     "next": "13.0.2",
