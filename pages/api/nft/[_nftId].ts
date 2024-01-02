@@ -1,5 +1,5 @@
 import { validateDomainName } from "./../../../utils/validators";
-import { parseDomainNameWithShm, return_url } from "../../../utils/utils";
+import { parseDomainNameWithSei, return_url } from "../../../utils/utils";
 import { createReferralSvg } from "../../../utils/createSvgReferral";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createSvgDomainNft } from "../../../utils/createSvgDomainNft";
@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = "" } = req.query;
   const host = return_url(req);
 
-  const parsedDomainNameNoExt = parseDomainNameWithShm(_nftId);
+  const parsedDomainNameNoExt = parseDomainNameWithSei(_nftId);
   const domainLength = parsedDomainNameNoExt ? parsedDomainNameNoExt.length : 0;
 
   if (!parsedDomainNameNoExt) {

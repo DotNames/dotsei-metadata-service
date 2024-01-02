@@ -24,7 +24,7 @@ export const validateDomainName = async (
   try {
     const registeryContract = getRegistryContract(chainId);
 
-    const domainData = await getDomainData(registeryContract, domainName);
+    const domainData = await getDomainData(registeryContract);
 
     if (domainData.isRegistered) {
       return {
