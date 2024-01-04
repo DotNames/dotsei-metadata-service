@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!parsedDomainNameNoExt) {
     return res
       .status(404)
-      .json({ message: "Invalid Domain | Label shoud have extension of .shm" });
+      .json({ message: "Invalid Domain | Label shoud have extension of .sei" });
   }
   try {
     const validationAccent = await validateDomainName(

@@ -1,17 +1,17 @@
 import sharp from "sharp";
 import { NextApiRequest, NextApiResponse } from "next";
-import { parseDomainNameWithShm, return_url } from "../../../../utils/utils";
+import { parseDomainNameWithSei, return_url } from "../../../../utils/utils";
 import { createReferralSvg } from "../../../../utils/createSvgReferral";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = null } = req.query;
   const host = return_url(req);
-  const parsedDomainNameNoExt = parseDomainNameWithShm(_nftId);
+  const parsedDomainNameNoExt = parseDomainNameWithSei(_nftId);
   const domainLength = parsedDomainNameNoExt ? parsedDomainNameNoExt.length : 0;
 
   if (!parsedDomainNameNoExt) {
     return res.status(400).json({
-      message: "Invalid Domain | Label shoud have extension of .shm",
+      message: "Invalid Domain | Label shoud have extension of .sei",
     });
   }
   const refSvg = createReferralSvg(parsedDomainNameNoExt);
@@ -24,7 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     "public, immutable, no-transform, s-maxage=31536000, max-age=31536000"
   );
   res.setHeader(
-   "accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+    "accept",
+    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
   );
   return res.end(image);
 };
