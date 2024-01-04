@@ -26,11 +26,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (validationAccent) {
       const { accent } = validationAccent;
 
-      const capitalizedName = parsedDomainNameNoExt.toUpperCase();
       const truncateLongString =
-        capitalizedName.length <= 9
-          ? capitalizedName
-          : capitalizedName.substring(0, 11) + "...";
+        parsedDomainNameNoExt.length <= 9
+          ? parsedDomainNameNoExt
+          : parsedDomainNameNoExt.substring(0, 11) + "...";
       const refSvg = createSvgDomainNft(truncateLongString, accent);
       let svgBuffer = Buffer.from(refSvg);
       const image = await sharp(svgBuffer).png().toBuffer();
