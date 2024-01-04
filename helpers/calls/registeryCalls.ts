@@ -9,26 +9,7 @@ const { default: DotSei } = require("@dotnames/dotseijs");
 
 export const getDomainData = async (label: string) => {
   try {
-    // const namehashLabel = namehash(label);
     const namehashLabel = label;
-    // const txData = await registryContract.labelSearch(
-    //   namehashLabel?.toLowerCase()
-    // );
-    // const [isRegistered, owner, resolver] = txData;
-    // const parsedData = {
-    //   isRegistered,
-    //   owner,
-    //   resolver,
-    //   name: label?.toLowerCase(),
-    // };
-    // if (!isRegistered) {
-    //   throw {
-    //     message:
-    //       "Domain not registered. Please register the domain to continue.",
-    //     code: 404,
-    //   };
-    // }
-    // return parsedData;
 
     const client = await getCosmWasmClient("https://sei-rpc.polkachu.com/");
     const dotSei = new DotSei({
