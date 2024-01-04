@@ -38,5 +38,13 @@ export const contractsV2 = {
     "sei1cmmfxy0n97s87cfxxran2xkmfl3cmm3fq6wrj3vy8hpgxyn80d9q3d55kk",
   controller: "sei12p2mwewadmf46zmulydyuphdrsxlss6j924ef7wppylaa2g5eypsg403f3",
 };
+export const seiContracts = {
+  registry: "sei1qzz96z3hg4jl5qz2ky6msqtdtslx4kqxn9uuwqk75hvtphncw5tstqhfpu",
+  registrar: "sei142qep0fke20yvs9s7ufgmxrxg37zhe486udrpjzsnglaw03pcyrqtf0fnx",
+  reverseRegistrar:
+    "sei1vrm3fekj7m4mz4agxkr5hdxa958kwsgjj2vmflhalxeqw70usntsv58ldt",
+  controller: "sei1mrw7gcd76nng8p554f2c00557txjtxhpmrmskfyn39gjcs4ewhlqnzqmmf",
+  resolver: "sei17xd4qyfxwnzylewlr99927h7s48tu80mdm56y9eravpqvsmrml5srrmtty",
+};
 
 export default contracts;

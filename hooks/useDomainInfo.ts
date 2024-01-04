@@ -1,6 +1,7 @@
 import axios from "axios";
 import keccak256 from "keccak256";
-
+import { DEFAULT_REST_RPC_URL } from "../configs/rpc";
+import { contractsV2, seiContracts } from "../configs/contracts";
 const getDomainWitoutTld = (label: string) => {
   try {
     return label
@@ -34,7 +35,7 @@ export const getDomainExpiry = async (label: string) => {
     var queryBase64Value = btoa(JSON.stringify(queryValue));
 
     const { data } = await axios.get(
-      `https://sei-api.polkachu.com/cosmwasm/wasm/v1/contract/sei142qep0fke20yvs9s7ufgmxrxg37zhe486udrpjzsnglaw03pcyrqtf0fnx/smart/${queryBase64Value}`
+      `${DEFAULT_REST_RPC_URL}/cosmwasm/wasm/v1/contract/${seiContracts.registrar}/smart/${queryBase64Value}`
     );
 
     if (data) {
