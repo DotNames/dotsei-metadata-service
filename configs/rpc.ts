@@ -39,4 +39,6 @@ const RPC = {
   [ChainId.LIBERTY20]: "https://liberty20.shardeum.org/",
 };
 
+export const DEFAULT_REST_RPC_URL = "https://sei-api.polkachu.com";
+
 export default RPC;

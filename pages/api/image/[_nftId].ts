@@ -1,5 +1,5 @@
 import { validateDomainName } from "./../../../utils/validators";
-import { parseDomainNameWithShm, return_url } from "../../../utils/utils";
+import { parseDomainNameWithSei, return_url } from "../../../utils/utils";
 import { createReferralSvg } from "../../../utils/createSvgReferral";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createSvgDomainNft } from "../../../utils/createSvgDomainNft";
@@ -9,13 +9,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _nftId = "" } = req.query;
   const host = return_url(req);
 
-  const parsedDomainNameNoExt = parseDomainNameWithShm(_nftId);
+  const parsedDomainNameNoExt = parseDomainNameWithSei(_nftId);
   const domainLength = parsedDomainNameNoExt ? parsedDomainNameNoExt.length : 0;
 
   if (!parsedDomainNameNoExt) {
     return res
       .status(404)
-      .json({ message: "Invalid Domain | Label shoud have extension of .shm" });
+      .json({ message: "Invalid Domain | Label shoud have extension of .sei" });
   }
   try {
     const validationAccent = await validateDomainName(
@@ -26,11 +26,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (validationAccent) {
       const { accent } = validationAccent;
 
-      const capitalizedName = parsedDomainNameNoExt.toUpperCase();
       const truncateLongString =
-        capitalizedName.length <= 9
-          ? capitalizedName
-          : capitalizedName.substring(0, 11) + "...";
+        parsedDomainNameNoExt.length <= 9
+          ? parsedDomainNameNoExt
+          : parsedDomainNameNoExt.substring(0, 11) + "...";
       const refSvg = createSvgDomainNft(truncateLongString, accent);
       let svgBuffer = Buffer.from(refSvg);
       const image = await sharp(svgBuffer).png().toBuffer();

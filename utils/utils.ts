@@ -7,12 +7,12 @@ export function return_url(req: NextApiRequest) {
     return `http://${req.rawHeaders[1]}`;
   }
 }
-export function parseDomainNameWithShm(domainName: string) {
+export function parseDomainNameWithSei(domainName: string) {
   const domainNameSplit = domainName.split(".");
   const splitLength = domainNameSplit.length;
   if (
     domainNameSplit.length >= 2 &&
-    domainNameSplit[splitLength - 1] == "shm"
+    domainNameSplit[splitLength - 1] == "sei"
   ) {
     return domainNameSplit[0];
   }

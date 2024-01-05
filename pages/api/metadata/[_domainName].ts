@@ -1,40 +1,51 @@
 import { DEFAULT_CHAIN_ID } from "./../../../configs/index";
 import { getRegistryContract } from "./../../../helpers/contractHelpers";
-import { return_url, parseDomainNameWithShm } from "../../../utils/utils";
+import { return_url, parseDomainNameWithSei } from "../../../utils/utils";
 import { createReferralSvg } from "../../../utils/createSvgReferral";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getDomainData } from "../../../helpers/calls/registeryCalls";
-
+import { getDomainExpiry } from "../../../hooks/useDomainInfo";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { _domainName = "" } = req.query;
+  async function expiryDate() {
+    const expiry = await getDomainExpiry(_domainName);
 
+    let normalDate = new Date(expiry.expires * 1000);
+    const date = normalDate.getDate();
+    const month = normalDate.getMonth();
+    const year = normalDate.getFullYear();
+    return `${date}/${month}/${year}`;
+  }
   // TODO : Dynamic Chain Id through req query
-  const chainId = DEFAULT_CHAIN_ID;
+  // const chainId = DEFAULT_CHAIN_ID;
   const host = return_url(req);
-  const registeryContract = getRegistryContract(chainId);
-  const parsedDomainNameNoExt = parseDomainNameWithShm(_domainName);
+  // const registeryContract = getRegistryContract(chainId);
+  const parsedDomainNameNoExt = parseDomainNameWithSei(_domainName);
+
+  function domainTrait(domain: string) {
+    switch (domain.length) {
+      case 3:
+        return "Premium";
+      case 4:
+        return "Rare";
+      default:
+        return "Standard";
+    }
+  }
+
   if (!parsedDomainNameNoExt) {
     return res
       .status(404)
-      .json({ message: "Invalid Domain | Label shoud have extension of .shm" });
+      .json({ message: "Invalid Domain | Label shoud have extension of .sei" });
   }
   try {
-    const domainData = await getDomainData(
-      registeryContract,
-      parsedDomainNameNoExt
-    );
+    const domainData = await getDomainData(parsedDomainNameNoExt);
     res.send({
       ...domainData,
-      name: parsedDomainNameNoExt,
-      description: `DotShm domains is your go-to web3 identity on the Shardeum blockchain. Replace your complex blockchain addresses using DotShm and get access to thousands of web3 applications, trade your domains on secondary market & much more.
-
-
-Visit www.dotshm.me now to claim a domain for yourself.`,
-      domainName: _domainName,
-      externalUrl: `https://dotshm.me/name/${_domainName}`,
-      nftUrl: `${host}/api/nft/${_domainName}`,
-      referralUrl: `https://dotshm.me?referral=${parsedDomainNameNoExt}`,
-      refrralPreviewUrl: `${host}/api/nft/referral/${_domainName}`,
+      name: _domainName,
+      description: `DotSei, a web3 domain on Sei blockchain - for your sei addresses & websites.`,
+      externalUrl: `https://dotsei.me/name/${_domainName}`,
+      image: `${host}/api/image/${_domainName}`,
       attributes: [
         {
           trait_type: "domain",
@@ -50,7 +61,15 @@ Visit www.dotshm.me now to claim a domain for yourself.`,
         },
         {
           trait_type: "type",
-          value: "standard",
+          value: domainTrait(parsedDomainNameNoExt),
+        },
+        {
+          trait_type: "registration date",
+          value: "",
+        },
+        {
+          trait_type: "expiry date",
+          value: await expiryDate(),
         },
       ],
     });
