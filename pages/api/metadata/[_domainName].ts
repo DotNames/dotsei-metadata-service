@@ -43,10 +43,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.send({
       ...domainData,
       name: _domainName,
-      description: `Web3 domains natively on Sei Layer 1 blockchain. Currently live on Sei Mainnet. Powered by Sei token.
-
-
-Visit www.dotsei.me now to claim a domain for yourself.`,
+      description: `DotSei, a web3 domain on Sei blockchain - for your sei addresses & websites.`,
       externalUrl: `https://dotsei.me/name/${_domainName}`,
       image: `${host}/api/image/${_domainName}`,
       attributes: [
