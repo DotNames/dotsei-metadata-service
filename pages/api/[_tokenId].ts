@@ -1,18 +1,22 @@
-import { DEFAULT_CHAIN_ID } from "./../../../configs/index";
-import { getRegistryContract } from "./../../../helpers/contractHelpers";
-import { return_url, parseDomainNameWithSei } from "../../../utils/utils";
-import { createReferralSvg } from "../../../utils/createSvgReferral";
+import { DEFAULT_CHAIN_ID } from "../../configs/index";
+import { getRegistryContract } from "../../helpers/contractHelpers";
+import { return_url, parseDomainNameWithSei } from "../../utils/utils";
+import { createReferralSvg } from "../../utils/createSvgReferral";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getDomainData } from "../../../helpers/calls/registeryCalls";
-import { getDomainExpiry } from "../../../hooks/useDomainInfo";
+import { getDomainData } from "../../helpers/calls/registeryCalls";
+import { getDomainExpiry, getNftInfo } from "../../hooks/useDomainInfo";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { _domainName = "" } = req.query;
+  const { _tokenId = "" } = req.query;
+
+  const { extension } = await getNftInfo(_tokenId);
+
+  const _domainName = extension.name + ".sei";
   async function expiryDate() {
     const expiry = await getDomainExpiry(_domainName);
 
     let normalDate = new Date(expiry.expires * 1000);
     const date = normalDate.getDate();
-    const month = normalDate.getMonth();
+    const month = normalDate.getMonth() + 1;
     const year = normalDate.getFullYear();
     return `${date}/${month}/${year}`;
   }

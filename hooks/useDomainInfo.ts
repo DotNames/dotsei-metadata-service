@@ -50,3 +50,29 @@ export const getDomainExpiry = async (label: string) => {
     // return null;
   }
 };
+
+export const getNftInfo = async (tokenId: string) => {
+  try {
+    const queryValue = {
+      nft_info: {
+        token_id: tokenId,
+      },
+    };
+    var queryBase64Value = btoa(JSON.stringify(queryValue));
+
+    const { data } = await axios.get(
+      `${DEFAULT_REST_RPC_URL}/cosmwasm/wasm/v1/contract/${seiContracts.registrar}/smart/${queryBase64Value}`
+    );
+
+    if (data) {
+      return data?.data;
+    } else {
+      throw new Error("Unable to fetch data");
+    }
+  } catch (error) {
+    console.log(` registrarQueries32 ~ error:`, error);
+    throw error;
+
+    // return null;
+  }
+};
