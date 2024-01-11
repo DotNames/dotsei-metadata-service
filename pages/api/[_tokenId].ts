@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     let normalDate = new Date(expiry.expires * 1000);
     const date = normalDate.getDate();
-    const month = normalDate.getMonth();
+    const month = normalDate.getMonth() + 1;
     const year = normalDate.getFullYear();
     return `${date}/${month}/${year}`;
   }
