@@ -28,7 +28,7 @@ const Home: NextPage = () => {
                   </p>
                   <p className={styles.uuiSub}>
                     get
-                    (https://dotsei-metadata-service.vercel.app/api/:tokenId)
+                    (https://metadata.dotsei.me/api/:tokenId)
                   </p>
                 </code>
               </code>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
                   </p>
                   <p className={styles.uuiSub}>
                     get
-                    (https://dotsei-metadata-service.vercel.app/api/image/:domainName)
+                    (https://metadata.dotsei.me/api/image/:domainName)
                   </p>
                 </code>
               </code>
